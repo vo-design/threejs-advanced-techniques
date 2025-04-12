@@ -6,7 +6,11 @@ import CANNON from 'cannon'
 /**
  * Debug
  */
-const gui = new GUI()
+const gui = new GUI(
+    {
+        title: 'Physics',
+    }
+)
 const debugObject = {}
 
 debugObject.createSphere = () =>
@@ -50,9 +54,9 @@ debugObject.reset = () =>
     objectsToUpdate.splice(0, objectsToUpdate.length)
 }
 
-gui.add(debugObject, 'createSphere')
-gui.add(debugObject, 'createBox')
-gui.add(debugObject, 'reset')
+gui.add(debugObject, 'createSphere').name('Create Sphere')
+gui.add(debugObject, 'createBox').name('Create Box')
+gui.add(debugObject, 'reset').name('Reset all figures')
 
 
 /**

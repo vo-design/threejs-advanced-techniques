@@ -17,3 +17,8 @@ body
     left: 0;
     outline: none;
 }
+
+.lil-gui button {
+    text-align: left;
+    padding-left: 14px;
+}
