@@ -21,7 +21,40 @@ debugObject.createSphere = () =>
     )
 }
 
+debugObject.createBox = () =>
+{
+    createBox(
+        Math.random(),
+        Math.random(),
+        Math.random(),
+        {
+            x: (Math.random() - 0.5) * 3,
+            y: 3,
+            z: (Math.random() - 0.5) * 3
+        }
+    )
+}
+
+debugObject.reset = () =>
+{
+    for(const object of objectsToUpdate)
+    {
+        // Remove body
+        object.body.removeEventListener('collide', playHitSound)
+        world.removeBody(object.body)
+
+        // Remove mesh
+        scene.remove(object.mesh)
+    }
+
+    objectsToUpdate.splice(0, objectsToUpdate.length)
+}
+
 gui.add(debugObject, 'createSphere')
+gui.add(debugObject, 'createBox')
+gui.add(debugObject, 'reset')
+
+
 /**
  * Base
  */
@@ -260,20 +293,7 @@ const createBox = (width, height, depth, position) =>
 
 createBox(1, 1.5, 2, { x: 0, y: 3, z: 0 })
 
-debugObject.createBox = () =>
-{
-    createBox(
-        Math.random(),
-        Math.random(),
-        Math.random(),
-        {
-            x: (Math.random() - 0.5) * 3,
-            y: 3,
-            z: (Math.random() - 0.5) * 3
-        }
-    )
-}
-gui.add(debugObject, 'createBox')
+
 
 
 /**
